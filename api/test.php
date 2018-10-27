@@ -9,13 +9,18 @@ $idTesting = 772734;
 Насос ГУР ACURA MDX (YD2) 3.7 AWD
 */
 
-# смотрим, что содержит элемент каталога
 if (
     CModule::IncludeModule("catalog") and
     CModule::IncludeModule("iblock")
 ){
-    $zaprosElement = CCatalogProduct::GetByID($idTesting);
-    $ilsResult = $zaprosElement;
+    $elementZapros = CPrice::GetList(
+        array(),
+        array(
+            "PRODUCT_ID"    =>  $idTesting
+        )
+    );
+    $elementResult = $elementZapros->Fetch();
+    $ilsResult = $elementResult;
 }
 
 if(!empty($ilsResult)){
